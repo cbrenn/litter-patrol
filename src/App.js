@@ -11,7 +11,7 @@ class App extends Component {
     };
 
     this.startGame();
-    console.log(this.state.bins);
+    console.log('here',this.state.bins);
   }
 
   startGame() {
@@ -31,14 +31,25 @@ class App extends Component {
     return bins;
   }
 
-  onTrashClicked = () => {
+  onTrashClicked = (index) => {
     // Fill this in!
+    console.log('onTrashClicked',index)
+    //add point
+    this.setState({ points: this.state.points+1 });
+    console.log(this.state.points)
+    //remove imgs
+
   }
+
+
+
 
   render() {
     const bins = this.state.bins.map((bin, index) => {
       return (
-        <Trash key={`trash-${index}`} />
+        <Trash key = {`trash-${index}`}
+        onTrashClicked = { this.onTrashClicked} index={index}
+      visible={bin.isTrashVisible} />
       );
     });
 
